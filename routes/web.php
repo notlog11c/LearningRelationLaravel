@@ -50,3 +50,7 @@ Route::get('/create_user_profile', function () {
 
     return $user;
 });
+
+Route::get('/read_user', function () {
+    
+});
