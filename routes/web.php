@@ -77,3 +77,16 @@ Route::get('/read_profile', function () {
 
     return $data;
 });
+
+Route::get('/update_profile', function () {
+    $user = User::find(2);
+
+    $data = [
+        'phone' => '085764446',
+        'address' => 'Jl. lagi update genks'
+    ];
+
+    $user->profile()->update($data);
+
+    return $user;
+});
