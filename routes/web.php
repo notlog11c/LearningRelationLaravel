@@ -29,13 +29,20 @@ Route::get('/create_user', function () {
 });
 
 Route::get('/create_profile', function () {
-    $profile = Profile::create([
-        'user_id' => 1,
-        'phone' => '12345678',
-        'address' => 'jl. kemana, No. 1'
+    // $profile = Profile::create([
+    //     'user_id' => 1,
+    //     'phone' => '12345678',
+    //     'address' => 'jl. kemana, No. 1'
+    // ]);
+
+    $user = User::find(2);
+
+    $user->profile()->create([
+        'phone' => '657483090',
+        'address' => 'Jalanku ke kamu'
     ]);
 
-    return $profile;
+    return $user;
 });
 
 Route::get('/create_user_profile', function () {
@@ -87,6 +94,14 @@ Route::get('/update_profile', function () {
     ];
 
     $user->profile()->update($data);
+
+    return $user;
+});
+
+Route::get('/delete_profile', function () {
+    $user = User::find(2);
+
+    $user->profile()->delete();
 
     return $user;
 });
