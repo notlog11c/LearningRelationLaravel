@@ -105,3 +105,19 @@ Route::get('/delete_profile', function () {
 
     return $user;
 });
+
+Route::get('/create_post', function () {
+
+    $user = User::create([
+        'name' => 'da',
+        'email' => 'adsada@mail.com',
+        'password' => bcrypt('232323')
+    ]);
+
+    $user->posts()->create([
+        'title' => 'ini title',
+        'body' => 'Hello World ini kolom body'
+    ]);
+
+    return 'success';
+});
