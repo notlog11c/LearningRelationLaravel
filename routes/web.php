@@ -86,11 +86,11 @@ Route::get('/read_profile', function () {
 });
 
 Route::get('/update_profile', function () {
-    $user = User::find(2);
+    $user = User::find(1);
 
     $data = [
-        'phone' => '085764446',
-        'address' => 'Jl. lagi update genks'
+        'phone' => '283741',
+        'address' => 'Jl. dadali genks'
     ];
 
     $user->profile()->update($data);
