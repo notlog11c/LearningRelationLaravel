@@ -108,16 +108,45 @@ Route::get('/delete_profile', function () {
 
 Route::get('/create_post', function () {
 
-    $user = User::create([
-        'name' => 'da',
-        'email' => 'adsada@mail.com',
-        'password' => bcrypt('232323')
-    ]);
+    // $user = User::create([
+    //     'name' => 'da',
+    //     'email' => 'adsada@mail.com',
+    //     'password' => bcrypt('232323')
+    // ]);
+
+    $user = User::findOrFail(1);
 
     $user->posts()->create([
-        'title' => 'ini title',
-        'body' => 'Hello World ini kolom body'
+        'title' => 'ini title loh',
+        'body' => 'Hello World! ini namanya kolom body'
     ]);
 
     return 'success';
+});
+
+Route::get('/read_posts', function () {
+    $user = User::find(1);
+
+    $posts = ($user->posts()->get());
+
+        foreach ($posts as $post) {
+            $data[] = [
+                'name' => $post->user->name,
+                'title' => $post->title,
+                'body' => $post->body,
+            ];
+        };
+
+    return $data;
+});
+
+Route::get('/update_post', function() {
+    $user = User::findOrFail(1);
+
+    $user->posts()->whereId(1)->update([
+        'title' => 'lg ngupdate cuy',
+        'body' => 'aku sayang kamu loh'
+    ]);
+
+    return 'Success!';
 });
