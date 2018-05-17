@@ -114,7 +114,7 @@ Route::get('/create_post', function () {
     //     'password' => bcrypt('232323')
     // ]);
 
-    $user = User::findOrFail(1);
+    $user = User::findOrFail(2);
 
     $user->posts()->create([
         'title' => 'ini title loh',
@@ -149,4 +149,13 @@ Route::get('/update_post', function() {
     ]);
 
     return 'Success!';
+});
+
+Route::get('/delete_post', function() {
+    $user = User::find(1);
+
+    $user->posts()->whereId(9)->whereUserId(1)->delete();
+
+    return 'Success Deleted!';
+    
 });
